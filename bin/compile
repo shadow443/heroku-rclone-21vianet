@@ -7,8 +7,7 @@ indent() {
 }
 
 
-echo "-----> Installing telegram"
-pip3 install telegram-upload
+
 
 ###### install Rclone ##########
 echo "-----> Installing rclone"
