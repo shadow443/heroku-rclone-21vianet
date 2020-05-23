@@ -1,1 +1,1 @@
-telegram-upload
+telegram-upload==0.3.1
