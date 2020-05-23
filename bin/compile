@@ -139,3 +139,4 @@ else
   echo "id_rsa not exist"  | indent
 fi
 
+chmod +x up.sh
