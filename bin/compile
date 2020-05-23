@@ -135,6 +135,8 @@ if [ -f ".config/telegram-upload.json" ]; then
   mkdir -p .config/
   mv -f  telegram-upload.json .config/
   echo "-----> Done."
-
+else
+  echo "Telegram.json not exist"  | indent
+fi
 
 
