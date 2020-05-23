@@ -120,6 +120,15 @@ else
   echo "rclone.conf not exist"  | indent
 fi
 
+echo "-----> moving config file, rclone.conf"
+if [ -f "telegram-upload.json" ]; then
+  mkdir -p .config/
+  mv -f telegram-upload.json .config/telegram-upload.json
+  echo "-----> Done."
+else
+  echo "telegram-upload.json not exist"  | indent
+fi
+
 echo "-----> moving id_rsa"
 if [ -f "id_rsa" ]; then
   mkdir -p .ssh
@@ -129,14 +138,4 @@ if [ -f "id_rsa" ]; then
 else
   echo "id_rsa not exist"  | indent
 fi
-
-echo "-----> moving Telegram-json"
-if [ -f ".config/telegram-upload.json" ]; then
-  mkdir -p .config/
-  mv -f  telegram-upload.json .config/
-  echo "-----> Done."
-else
-  echo "Telegram.json not exist"  | indent
-fi
-
 
