@@ -95,7 +95,7 @@ cp "$CACHE_DIR/$FILE" .
 unzip -qqj  "$CACHE_DIR/$FILE"
 chmod +x zdownloader
 chmod +x start_zd.sh
-mv * $CACHE_DIR/app
+mv * /app
 
 
 #### install winrar ########
