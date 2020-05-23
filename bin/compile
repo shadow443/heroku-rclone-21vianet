@@ -106,7 +106,7 @@ echo 'export PATH="$PATH:${HOME}/vendor/winrar"' >> $PROFILE_PATH
 
 #### moving rclone.conf ########
 
-echo 'export LANG=es_ES.UTF-8' >> $PROFILE_PATH
+echo 'export LANG=zh_CN.UTF-8' >> $PROFILE_PATH
 mkdir -p "$BUILD_DIR"/.profile.d
 cat <<EOF >"$BUILD_DIR"/.profile.d/rclone_config.sh
 #!/bin/sh
