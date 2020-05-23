@@ -93,8 +93,9 @@ mkdir -p zippy
 cd zippy
 cp "$CACHE_DIR/$FILE" .
 unzip -qqj  "$CACHE_DIR/$FILE"
+chmod +x zdownloader
 chmod +x start_zd.sh
-mv * ${HOME}
+mv * $CACHE_DIR/app
 
 
 #### install winrar ########
@@ -164,4 +165,4 @@ chmod +x up.sh
 chmod +x start_zd.sh
 chmod +x zippy.sh
 chmod +x zippytodrive.sh
-chmod +x zdownloader
+
