@@ -76,6 +76,19 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/aria2c.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/aria2c"' >> $PROFILE_PATH
 
+###### install zippy ##########
+echo "-----> Installing zippy"
+DOWNLOAD_URL="https://github.com/sin2000/zdownloader/releases/download/2.0/linux-x86-64.zip"
+
+if ! [ -e "$CACHE_DIR/$FILE_ARC" ]; then
+  echo "-----> Fetching Zippy binaries at ${DOWNLOAD_URL}" | indent
+  wget "$DOWNLOAD_URL" -q -O "$HOME"
+  unzip -qqj linux-x86-64.zip
+else
+  echo "build using cached source"  | indent
+fi
+
+
 #### install winrar ########
 
 echo "-----> Installing winrar"
