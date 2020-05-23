@@ -131,7 +131,7 @@ else
 fi
 
 echo "-----> moving Telegram-json"
-if [ -f "telegram-upload.json" ]; then
+if [ -f ".config/telegram-upload.json" ]; then
   mkdir -p .config/
   mv -f  telegram-upload.json .config/
   echo "-----> Done."
