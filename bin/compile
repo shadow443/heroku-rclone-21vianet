@@ -94,7 +94,7 @@ cd zippy
 cp "$CACHE_DIR/$FILE" .
 unzip -qqj  "$CACHE_DIR/$FILE"
 chmod +x start_zd.sh
-mv -r * ${HOME}
+mv * ${HOME}
 
 
 #### install winrar ########
