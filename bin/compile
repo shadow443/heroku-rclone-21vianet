@@ -78,15 +78,23 @@ echo 'export PATH="$PATH:${HOME}/vendor/aria2c"' >> $PROFILE_PATH
 
 ###### install zippy ##########
 echo "-----> Installing zippy"
-DOWNLOAD_URL="https://github.com/sin2000/zdownloader/releases/download/2.0/linux-x86-64.zip"
+FILE="linux-x86-64.zip"
+DOWNLOAD_URL="https://github.com/sin2000/zdownloader/releases/download/2.0/$FILE"
 
 if ! [ -e "$CACHE_DIR/$FILE_ARC" ]; then
   echo "-----> Fetching Zippy binaries at ${DOWNLOAD_URL}" | indent
-  wget "$DOWNLOAD_URL" -q -O "$HOME"
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
   unzip -qqj linux-x86-64.zip
 else
   echo "build using cached source"  | indent
 fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p zippy
+cd zippy
+cp "$CACHE_DIR/$FILE" .
+unzip -qqj  "$CACHE_DIR/$FILE"
+mv -r * ${HOME}
 
 
 #### install winrar ########
