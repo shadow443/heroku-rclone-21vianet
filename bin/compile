@@ -6,6 +6,10 @@ indent() {
   sed -u 's/^/       /'
 }
 
+
+echo "-----> Installing telegram"
+pip3 install telegram-upload
+
 ###### install Rclone ##########
 echo "-----> Installing rclone"
 BUILD_DIR=$1
