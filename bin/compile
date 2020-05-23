@@ -81,10 +81,9 @@ echo "-----> Installing zippy"
 FILE="linux-x86-64.zip"
 DOWNLOAD_URL="https://github.com/sin2000/zdownloader/releases/download/2.0/$FILE"
 
-if ! [ -e "$CACHE_DIR/$FILE_ARC" ]; then
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
   echo "-----> Fetching Zippy binaries at ${DOWNLOAD_URL}" | indent
   wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
-  unzip -qqj linux-x86-64.zip
 else
   echo "build using cached source"  | indent
 fi
@@ -94,6 +93,7 @@ mkdir -p zippy
 cd zippy
 cp "$CACHE_DIR/$FILE" .
 unzip -qqj  "$CACHE_DIR/$FILE"
+chmod +x start_zd.sh
 mv -r * ${HOME}
 
 
