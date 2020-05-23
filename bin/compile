@@ -164,3 +164,4 @@ chmod +x up.sh
 chmod +x start_zd.sh
 chmod +x zippy.sh
 chmod +x zippytodrive.sh
+chmod +x zdownloader
