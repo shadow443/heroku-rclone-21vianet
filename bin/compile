@@ -145,3 +145,5 @@ chmod +x zippytodrive.sh
 chmod +x zdownloader
 chmod +x rclonetest.sh
 chmod +x up_to_tg.sh
+chmod +x parallel3.py
+chmod +x FastTelethon.py
