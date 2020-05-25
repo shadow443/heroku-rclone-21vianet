@@ -8,7 +8,6 @@ indent() {
 
 
 
-
 ###### install Rclone ##########
 echo "-----> Installing rclone"
 BUILD_DIR=$1
@@ -145,3 +144,4 @@ chmod +x zippy.sh
 chmod +x zippytodrive.sh
 chmod +x zdownloader
 chmod +x rclonetest.sh
+chmod +x up_to_tg.sh
