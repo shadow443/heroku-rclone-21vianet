@@ -6,8 +6,6 @@ indent() {
   sed -u 's/^/       /'
 }
 
-
-
 ###### install Rclone ##########
 echo "-----> Installing rclone"
 BUILD_DIR=$1
@@ -147,3 +145,4 @@ chmod +x rclonetest.sh
 chmod +x up_to_tg.sh
 chmod +x parallel3.py
 chmod +x FastTelethon.py
+chmod +x test_file_resize.sh
