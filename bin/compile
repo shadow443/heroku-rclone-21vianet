@@ -136,13 +136,4 @@ else
   echo "id_rsa not exist"  | indent
 fi
 
-chmod +x up.sh
-chmod +x start_zd.sh
-chmod +x zippy.sh
-chmod +x zippytodrive.sh
-chmod +x zdownloader
-chmod +x rclonetest.sh
-chmod +x up_to_tg.sh
-chmod +x parallel3.py
-chmod +x FastTelethon.py
-chmod +x test_file_resize.sh
+chmod +x *.sh
