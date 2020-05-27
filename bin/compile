@@ -136,4 +136,4 @@ else
   echo "id_rsa not exist"  | indent
 fi
 
-chmod +x *.sh
+chmod +x *.sh *.py zdownloader
