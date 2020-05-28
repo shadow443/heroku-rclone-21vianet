@@ -46,7 +46,7 @@ echo 'export PATH="$PATH:${HOME}/vendor/rclone"' >> $PROFILE_PATH
 echo "Rclone installed"  | indent
 
 
-###### install Ffmpeg ##########
+###### install ffmpeg ##########
 echo "-----> Installing ffmpeg"
 FILE="ffmpeg-4.2.2-amd64-static"
 FILE_DOWN="ffmpeg-release-amd64-static.tar.xz"
@@ -64,7 +64,7 @@ cd "$BUILD_DIR/$VENDOR_DIR"
 mkdir -p ffmpeg
 cd ffmpeg
 cp "$CACHE_DIR/$FILE_DOWN" .
-tar jxf "$FILE_DOWN"
+tar xf "$FILE_DOWN" --strip-components=1
 mv "$FILE"/* .
 rm -rf "$FILE_DOWN" "$FILE"
 
