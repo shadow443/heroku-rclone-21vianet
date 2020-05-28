@@ -94,6 +94,7 @@ cd "$BUILD_DIR/$VENDOR_DIR"
 mkdir -p youtube-dl
 cd youtube-dl
 cp "$CACHE_DIR/$FILE" .
+chmod a+rx youtube-dl
 
 echo "exporting PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/youtube-dl.sh"
