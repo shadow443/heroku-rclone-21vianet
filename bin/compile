@@ -53,7 +53,7 @@ FILE_DOWN="ffmpeg-release-amd64-static.tar.xz"
 DOWNLOAD_URL="https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
 
 if ! [ -e "$CACHE_DIR/$FILE_DOWN" ]; then
-  echo "-----> Fetching Aria2 binaries at ${DOWNLOAD_URL}" | indent
+  echo "-----> Fetching ffmpeg binaries at ${DOWNLOAD_URL}" | indent
   wget "$DOWNLOAD_URL" -q -O "$CACHE_DIR/$FILE_DOWN"
 else
   echo "build using cached source"  | indent
@@ -65,16 +65,18 @@ mkdir -p ffmpeg
 cd ffmpeg
 cp "$CACHE_DIR/$FILE_DOWN" .
 tar xf "$FILE_DOWN" --strip-components=1
-mv "$FILE"/* .
+ls
+#mv "$FILE"/* .
 rm -rf "$FILE_DOWN" "$FILE"
+
 
 echo "exporting PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
-PROFILE_PATH2="$BUILD_DIR/.profile.d/ffprobe.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/ffmpeg"' >> $PROFILE_PATH
-echo 'export PATH="$PATH:${HOME}/vendor/ffprobe"' >> $PROFILE_PATH2
-
+PROFILE_PATH="$BUILD_DIR/.profile.d/ffprobe.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/ffprobe"' >> $PROFILE_PATH
 
 ###### install aria2 ##########
 echo "-----> Installing Aria2"
