@@ -11,8 +11,8 @@ echo "-----> Installing rclone"
 BUILD_DIR=$1
 CACHE_DIR=$2
 VENDOR_DIR="vendor"
-FILE="rclone.zip"
-DOWNLOAD_URL="https://github.com/xinxin8816/heroku-aria2c-21vianet/raw/master/rclone.zip"
+FILE="rclone-v1.52.0-linux-amd64.zip"
+DOWNLOAD_URL="https://downloads.rclone.org/v1.52.0/rclone-v1.52.0-linux-amd64.zip"
 
 mkdir -p "$CACHE_DIR"
 
@@ -91,10 +91,9 @@ fi
 
 
 cd "$BUILD_DIR/$VENDOR_DIR"
-mkdir -p youtubedl
-cd youtubedl
+mkdir -p youtube-dl
+cd youtube-dl
 cp "$CACHE_DIR/$FILE" .
-chmod +x youtube-dl
 
 echo "exporting PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/youtube-dl.sh"
