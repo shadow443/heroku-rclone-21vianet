@@ -192,4 +192,3 @@ else
 fi
 
 chmod +x *.sh *.py zdownloader
-chmod a+rx youtube-dl
