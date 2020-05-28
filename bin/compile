@@ -65,8 +65,6 @@ mkdir -p ffmpeg
 cd ffmpeg
 cp "$CACHE_DIR/$FILE_DOWN" .
 tar xf "$FILE_DOWN" --strip-components=1
-ls
-#mv "$FILE"/* .
 rm -rf "$FILE_DOWN" "$FILE"
 
 
@@ -78,6 +76,30 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/ffprobe.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/ffprobe"' >> $PROFILE_PATH
 
+###### install youtube-dl ##########
+echo "-----> Installing youtube-dl "
+
+FILE="youtube-dl"
+DOWNLOAD_URL="https://yt-dl.org/downloads/latest/$FILE"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching youtube-dl  binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p youtubedl
+cd youtubedl
+cp "$CACHE_DIR/$FILE" .
+chmod +x youtube-dl
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/youtube-dl.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/youtube-dl"' >> $PROFILE_PATH
 ###### install aria2 ##########
 echo "-----> Installing Aria2"
 
