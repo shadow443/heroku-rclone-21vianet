@@ -1,3 +1,4 @@
 telegram-upload
 telethon
 cryptg
+hachoir
