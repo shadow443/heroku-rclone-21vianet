@@ -2,3 +2,4 @@ telegram-upload
 telethon
 cryptg
 hachoir
+retry
