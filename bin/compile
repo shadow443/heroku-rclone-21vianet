@@ -83,12 +83,8 @@ echo "-----> Installing youtube-dl "
 FILE="youtube-dl"
 DOWNLOAD_URL="https://yt-dl.org/downloads/latest/$FILE"
 
-if ! [ -e "$CACHE_DIR/$FILE" ]; then
-  echo "-----> Fetching youtube-dl  binaries at ${DOWNLOAD_URL}" | indent
-  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
-else
-  echo "build using cached source"  | indent
-fi
+echo "-----> Fetching youtube-dl  binaries at ${DOWNLOAD_URL}" | indent
+wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
 
 
 cd "$BUILD_DIR/$VENDOR_DIR"
