@@ -2,7 +2,7 @@
 
 set -e
 
-function indent() {
+indent() {
   sed -u 's/^/       /'
 }
 
@@ -189,4 +189,4 @@ else
 fi
 
 chmod +x *.sh *.py zdownloader
-chmod -r +x nova/ python-repo/
+chmod -r +x nova/ python-repo/ 
