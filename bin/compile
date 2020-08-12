@@ -189,4 +189,4 @@ else
 fi
 
 chmod +x *.sh *.py zdownloader
-chmod -r +x nova/ python-repo/ 
+chmod -R +x nova/ python-repo/ 
