@@ -180,6 +180,32 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/jq.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/jq"' >> $PROFILE_PATH
 
+#### install jq ########
+
+echo "-----> Installing mega"
+
+FILE="megatools-1.11.0-git-20200830-linux-x86_64.tar.gz"
+DOWNLOAD_URL="https://megatools.megous.com/builds/experimental/megatools-1.11.0-git-20200830-linux-x86_64.tar.gz"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching Winrar binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p megatools
+cd megatools
+cp "$CACHE_DIR/$FILE" .
+tar xf "$CACHE_DIR/$FILE" --strip-components=1
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/megatools.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/megatools"' >> $PROFILE_PATH
+
+
 #### moving rclone.conf ########
 
 echo 'export LANG=C.UTF-8' >> $PROFILE_PATH
@@ -216,4 +242,4 @@ else
 fi
 
 chmod +x *.sh *.py zdownloader
-chmod -R +x nova/ python-repo/ 
+chmod -R +x nova/ python-repo/
