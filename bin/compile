@@ -180,7 +180,35 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/jq.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/jq"' >> $PROFILE_PATH
 
-#### install jq ########
+
+
+
+#### install pv ########
+
+echo "-----> Installing pv"
+
+FILE="pv"
+DOWNLOAD_URL="https://www.dropbox.com/s/i1qt63usn2auuvd/pv"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching Winrar binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p pv
+cd pv
+cp "$CACHE_DIR/$FILE" .
+chmod +x pv
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/pv.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/pv"' >> $PROFILE_PATH
+
+#### install mega ########
 
 echo "-----> Installing mega"
 
