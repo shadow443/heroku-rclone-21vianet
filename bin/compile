@@ -162,7 +162,7 @@ FILE="jq"
 DOWNLOAD_URL="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
 
 if ! [ -e "$CACHE_DIR/$FILE" ]; then
-  echo "-----> Fetching Winrar binaries at ${DOWNLOAD_URL}" | indent
+  echo "-----> Fetching jq binaries at ${DOWNLOAD_URL}" | indent
   wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
 else
   echo "build using cached source"  | indent
@@ -180,8 +180,30 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/jq.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/jq"' >> $PROFILE_PATH
 
+#### install ack ########
 
+echo "-----> Installing ack"
 
+FILE="ack"
+DOWNLOAD_URL="https://beyondgrep.com/ack-v3.4.0"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching ack binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p ack
+cd ack
+cp "$CACHE_DIR/$FILE" .
+chmod +x ack
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/ack.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/ack"' >> $PROFILE_PATH
 
 #### install pv ########
 
@@ -191,7 +213,7 @@ FILE="pv"
 DOWNLOAD_URL="https://www.dropbox.com/s/i1qt63usn2auuvd/pv"
 
 if ! [ -e "$CACHE_DIR/$FILE" ]; then
-  echo "-----> Fetching Winrar binaries at ${DOWNLOAD_URL}" | indent
+  echo "-----> Fetching pv binaries at ${DOWNLOAD_URL}" | indent
   wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
 else
   echo "build using cached source"  | indent
