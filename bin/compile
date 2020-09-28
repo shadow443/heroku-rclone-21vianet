@@ -230,6 +230,36 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/pv.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/pv"' >> $PROFILE_PATH
 
+#### install pv ########
+
+echo "-----> Installing mediainfo"
+
+FILE="mediainfo"
+DOWNLOAD_URL="https://www.dropbox.com/s/kntihpxcq7xnfpf/mediainfo"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching pv binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p mediainfo
+cd pv
+cp "$CACHE_DIR/$FILE" .
+chmod +x mediainfo
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/mediainfo.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/mediainfo"' >> $PROFILE_PATH
+
+#### test ########
+whoami
+echo "$(whoami)"
+sudo ls
+echo "$(sudo ls)"
 #### install mega ########
 
 echo "-----> Installing mega"
