@@ -256,7 +256,8 @@ mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/mediainfo"' >> $PROFILE_PATH
 
 #### test ########
-echo "$([whoami] whoami)"
+whoami_=$(whoami)
+echo -e "[Whoami] $whoami_"
 #### install mega ########
 
 echo "-----> Installing mega"
