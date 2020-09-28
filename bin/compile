@@ -238,14 +238,14 @@ echo "-----> Installing mediainfo"
 FILE="mediainfo"
 DOWNLOAD_URL="https://www.dropbox.com/s/fzwf6rooe1j26vt/mediainfo"
 
-#if ! [ -e "$CACHE_DIR/$FILE" ]; then
-#  echo "-----> Fetching mediainfo binaries at ${DOWNLOAD_URL}" | indent
-#  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
-#else
-#  echo "build using cached source"  | indent
-#fi
-echo "-----> Fetching mediainfo binaries at ${DOWNLOAD_URL}" | indent
-wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching mediainfo binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+# echo "-----> Fetching mediainfo binaries at ${DOWNLOAD_URL}" | indent
+# wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
 
 cd "$BUILD_DIR/$VENDOR_DIR"
 mkdir -p mediainfo
@@ -260,7 +260,7 @@ echo 'export PATH="$PATH:${HOME}/vendor/mediainfo"' >> $PROFILE_PATH
 
 #### test ########
 whoami_=$(whoami)
-echo -e "[Whoami] $whoami_"
+echo "-----> [Whoami] $whoami_"
 #### install mega ########
 
 echo "-----> Installing mega"
