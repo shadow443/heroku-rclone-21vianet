@@ -173,7 +173,7 @@ fi
 cd "$BUILD_DIR/$VENDOR_DIR"
 mkdir -p makemkv
 cd makemkv
-tar xf "$CACHE_DIR/$FILE" --strip-components=1
+tar xf "$CACHE_DIR/$FILE"
 chmod +x make* lib* mmccextr
 # Copia de librerias
 cp -v lib* ".heroku/vendor/lib/."
