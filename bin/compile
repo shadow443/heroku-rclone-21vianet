@@ -173,6 +173,7 @@ wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
 
 cd "$BUILD_DIR/$VENDOR_DIR"
 echo "$BUILD_DIR/$VENDOR_DIR"
+echo "$VENDOR_DIR"
 
 mkdir -p makemkv
 cd makemkv
