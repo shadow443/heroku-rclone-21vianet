@@ -161,32 +161,42 @@ echo 'export PATH="$PATH:${HOME}/vendor/winrar"' >> $PROFILE_PATH
 echo "-----> Installing makemkv"
 
 FILE="makemkv.tar.gz"
-DOWNLOAD_URL="https://www.dropbox.com/s/cy47mqc2za83auv/makemkv.tar.gz"
+DOWNLOAD_URL="https://www.dropbox.com/s/2bcbg4kchz7b5e6/makemkv.tar.gz"
+wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
 
-if ! [ -e "$CACHE_DIR/$FILE" ]; then
-  echo "-----> Fetching Makemkv binaries at ${DOWNLOAD_URL}" | indent
-  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
-else
-  echo "build using cached source"  | indent
-fi
+#if ! [ -e "$CACHE_DIR/$FILE" ]; then
+#  echo "-----> Fetching Makemkv binaries at ${DOWNLOAD_URL}" | indent
+#  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+#else
+#  echo "build using cached source"  | indent
+#fi
 
 cd "$BUILD_DIR/$VENDOR_DIR"
+echo "$BUILD_DIR/$VENDOR_DIR"
+
 mkdir -p makemkv
 cd makemkv
-tar xf "$CACHE_DIR/$FILE"
-chmod +x make* lib* mmccextr
-# Copia de librerias
-cp -v lib* /usr/lib/
-cp -v mmccextr /usr/bin/
+tar xf "$CACHE_DIR/$FILE" --strip-components=1
+
+chmod -v +x make* lib* mmccextr
+# Librerias
+#cp -v lib* 
+#cp -v mmccextr /usr/bin/
 
 echo "exporting PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/makemkvcon.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
-echo 'export PATH="$PATH:${HOME}/vendor/makemkvcon"' >> $PROFILE_PATH
-
-PROFILE_PATH="$BUILD_DIR/.profile.d/makemkv.sh"
-mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/makemkv"' >> $PROFILE_PATH
+
+#PROFILE_PATH="$BUILD_DIR/.profile.d/makemkv.sh"
+#mkdir -p "$(dirname "$PROFILE_PATH")"
+#echo 'export PATH="$PATH:${HOME}/vendor/makemkv"' >> $PROFILE_PATH
+
+echo "exporting Lib" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/makemkvlib.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export LD_LIBRARY_PATH="${HOME}/vendor/makemkv/lib:$LD_LIBRARY_PATH"' >> $PROFILE_PATH
+
 
 
 #### install jq ########
