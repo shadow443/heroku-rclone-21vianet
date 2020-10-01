@@ -155,6 +155,41 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/unrar.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/winrar"' >> $PROFILE_PATH
 
+
+#### install makemkv ##### <------- TODO
+
+echo "-----> Installing makemkv"
+
+FILE="makemkv.tar.gz"
+DOWNLOAD_URL="https://www.dropbox.com/s/cy47mqc2za83auv/makemkv.tar.gz"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching Makemkv binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p makemkv
+cd makemkv
+cp "$CACHE_DIR/$FILE" .
+tar xf "$CACHE_DIR/$FILE" --strip-components=1
+chmod +x make* lib* mmccextr
+# Copia de librerias
+cp -v lib* ".heroku/vendor/lib/."
+cp -v mmccextr /usr/bin/
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/makemkvcon.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/makemkvcon"' >> $PROFILE_PATH
+
+PROFILE_PATH="$BUILD_DIR/.profile.d/makemkv.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/makemkv"' >> $PROFILE_PATH
+
+
 #### install jq ########
 
 echo "-----> Installing jq"
