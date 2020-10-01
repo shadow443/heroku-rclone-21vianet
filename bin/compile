@@ -173,7 +173,6 @@ fi
 cd "$BUILD_DIR/$VENDOR_DIR"
 mkdir -p makemkv
 cd makemkv
-cp "$CACHE_DIR/$FILE" .
 tar xf "$CACHE_DIR/$FILE" --strip-components=1
 chmod +x make* lib* mmccextr
 # Copia de librerias
