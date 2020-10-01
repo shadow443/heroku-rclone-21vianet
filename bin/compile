@@ -176,7 +176,7 @@ cd makemkv
 tar xf "$CACHE_DIR/$FILE"
 chmod +x make* lib* mmccextr
 # Copia de librerias
-cp -v lib* ".heroku/vendor/lib/."
+cp -v lib* ".heroku/vendor/lib/"
 cp -v mmccextr /usr/bin/
 
 echo "exporting PATH" | indent
