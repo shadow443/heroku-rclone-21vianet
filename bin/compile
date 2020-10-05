@@ -226,6 +226,33 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/jq.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/jq"' >> $PROFILE_PATH
 
+#### install bc ########
+
+echo "-----> Installing bc"
+
+FILE="bc"
+DOWNLOAD_URL="https://www.dropbox.com/s/n3tgm7ppvqsr4d5/bc"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching bc binaries at ${DOWNLOAD_URL}" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  echo "build using cached source"  | indent
+fi
+
+cd "$BUILD_DIR/$VENDOR_DIR"
+mkdir -p bc
+cd bc
+cp "$CACHE_DIR/$FILE" .
+chmod +x bc
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/bc.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/bc"' >> $PROFILE_PATH
+
+
+
 #### install ack ########
 
 echo "-----> Installing ack"
@@ -339,6 +366,11 @@ mkdir -p "$BUILD_DIR"/.profile.d
 cat <<EOF >"$BUILD_DIR"/.profile.d/rclone_config.sh
 #!/bin/sh
 cd "\$HOME"
+
+indent() {
+  sed -u 's/^/       /'
+}
+
 echo "-----> moving config file, rclone.conf"
 if [ -f "rclone.conf" ]; then
   mkdir -p .config/rclone
